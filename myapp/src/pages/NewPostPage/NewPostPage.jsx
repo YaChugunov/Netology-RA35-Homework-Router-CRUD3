@@ -9,7 +9,7 @@ export default function NewPostPage({ history }) {
 
   const handleSubmit = () => {
     handlePush({ content: value });
-    history.push('/');
+    window.history.pushState({}, undefined, '/');
   };
 
   return (

@@ -6,7 +6,11 @@ export default function PostsProvider(props) {
   const [loading, setLoading] = useState(true);
 
   const update = () => {
-    fetch(process.env.REACT_APP_BACKEND_URL)
+    fetch(process.env.REACT_APP_BACKEND_URL, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
       .then((response) => response.json())
       .then((posts) => {
         setPosts(posts);
