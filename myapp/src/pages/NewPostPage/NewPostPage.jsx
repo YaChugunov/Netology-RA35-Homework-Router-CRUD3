@@ -9,9 +9,7 @@ export default function NewPostPage({ history }) {
 
   const handleSubmit = () => {
     handlePush({ content: value });
-    history.listen((location) => {
-      history.push('/super/url');
-    });
+    history.push('/');
   };
 
   return (
