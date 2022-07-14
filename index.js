@@ -19,8 +19,7 @@ router.get('/', async (ctx, next) => {
 });
 
 router.get('/posts', async (ctx, next) => {
-  // ctx.response.body = posts;
-  ctx.response.body = '---';
+  ctx.response.body = posts;
 });
 
 router.post('/posts', async (ctx, next) => {
@@ -45,7 +44,8 @@ router.delete('/posts/:id', async (ctx, next) => {
   ctx.response.status = 204;
 });
 
-app.use(router.routes()).use(router.allowedMethods());
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 const port = process.env.PORT || 7777;
 const server = http.createServer(app.callback());

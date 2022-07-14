@@ -6,12 +6,7 @@ export default function PostsProvider(props) {
   const [loading, setLoading] = useState(true);
 
   const update = () => {
-    fetch(process.env.REACT_APP_BACKEND_URL, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    })
+    fetch(process.env.REACT_APP_BACKEND_URL)
       .then((response) => response.json())
       .then((posts) => {
         setPosts(posts);
@@ -25,8 +20,7 @@ export default function PostsProvider(props) {
     console.log({ id, content });
     fetch(process.env.REACT_APP_BACKEND_URL, {
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=utf-8',
       },
       method: 'POST',
       body: JSON.stringify({ id, content }),

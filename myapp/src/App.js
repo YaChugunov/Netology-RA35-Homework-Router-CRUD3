@@ -12,10 +12,10 @@ export default function App() {
     <PostsProvider>
       <div className="App">
         <Routes>
-          <Route path="/posts/new" component={NewPostPage} />
-          <Route path="/posts/:id([0-9]+)?" component={ViewPostPage} />
-          <Route exact path="/" component={HomePage} />
-          <Route component={Page404} />
+          <Route path="/posts/new" element={<NewPostPage />} />
+          <Route path="/posts/:id([0-9]+)?" element={<ViewPostPage />} />
+          <Route exact path="/" element={<HomePage />} />
+          <Route element={<Page404 />} />
         </Routes>
       </div>
     </PostsProvider>
