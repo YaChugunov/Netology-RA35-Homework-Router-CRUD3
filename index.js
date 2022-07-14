@@ -14,6 +14,10 @@ let nextId = 1;
 
 const router = new Router();
 
+router.get('/', async (ctx, next) => {
+  ctx.response.body = 'Server started';
+});
+
 router.get('/posts', async (ctx, next) => {
   // ctx.response.body = posts;
   ctx.response.body = '---';
@@ -43,6 +47,6 @@ router.delete('/posts/:id', async (ctx, next) => {
 
 app.use(router.routes()).use(router.allowedMethods());
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 7777;
 const server = http.createServer(app.callback());
 server.listen(port, () => console.log('server started'));

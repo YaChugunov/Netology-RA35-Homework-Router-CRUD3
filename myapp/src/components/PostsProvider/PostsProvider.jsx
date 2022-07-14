@@ -9,7 +9,7 @@ export default function PostsProvider(props) {
     fetch(process.env.REACT_APP_BACKEND_URL, {
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
+        'Accept': 'application/json',
       },
     })
       .then((response) => response.json())
@@ -26,7 +26,7 @@ export default function PostsProvider(props) {
     fetch(process.env.REACT_APP_BACKEND_URL, {
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
+        'Accept': 'application/json',
       },
       method: 'POST',
       body: JSON.stringify({ id, content }),
