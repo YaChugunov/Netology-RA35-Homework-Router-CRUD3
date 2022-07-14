@@ -9,14 +9,13 @@ const app = new Koa();
 app.use(cors());
 app.use(koaBody({ json: true }));
 
-let posts = [{}];
+let posts = [];
 let nextId = 1;
 
 const router = new Router();
 
 router.get('/posts', async (ctx, next) => {
-  ctx.type = 'Content-Type; application/json';
-  ctx.body = posts;
+  ctx.response.body = posts;
 });
 
 router.post('/posts', async (ctx, next) => {
@@ -24,13 +23,11 @@ router.post('/posts', async (ctx, next) => {
 
   if (id !== 0) {
     posts = posts.map((o) => (o.id !== id ? o : { ...o, content: content }));
-    ctx.type = 'Content-Type; application/json';
     ctx.response.status = 204;
     return;
   }
 
   posts.push({ ...ctx.request.body, id: nextId++, created: Date.now() });
-  ctx.type = 'Content-Type; application/json';
   ctx.response.status = 204;
 });
 
@@ -40,12 +37,11 @@ router.delete('/posts/:id', async (ctx, next) => {
   if (index !== -1) {
     posts.splice(index, 1);
   }
-  ctx.type = 'Content-Type; application/json';
   ctx.response.status = 204;
 });
 
 app.use(router.routes()).use(router.allowedMethods());
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const server = http.createServer(app.callback());
 server.listen(port, () => console.log('server started'));
